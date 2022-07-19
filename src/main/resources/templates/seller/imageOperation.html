@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en" xmlns:th="www.thymeleaf.org"
+	th:replace="seller/base::layout(~{::section})">
+
+<head>
+<meta charset="UTF-8" />
+<title></title>
+</head>
+<body>
+	<section>
+		<!-- <iframe  name="iframe_a" height="300px" width="100%" title="Iframe Example"></iframe>-->
+		<div id="myModal" class="modal">
+
+			<div class="modal-content">
+				<span class="close">&times;</span>
+				<h2>Add More Images</h2>
+				<form th:action="@{/seller/product/image/add}" method="post"
+					enctype="multipart/form-data">
+					<input type="file" name="files" multiple /><br> <input
+						type="hidden" id="setId" name="pId" /> <input type="submit"
+						value="Add" class="submit-btn" />
+				</form>
+			</div>
+
+		</div>
+
+		<div class="container">
+			<div class="heading">
+				<h2>Perform Image Operation</h2>
+			</div>
+			<ul class="responsive-table">
+				<li class="table-header">
+					<div class="col col-1">Product</div>
+					<div class="col col-2">Add Image</div>
+					<div class="col col-3">Delete Image</div>
+				</li>
+				<li th:each="product:${products}" class="table-row">
+					<div class="col col-1" data-label="Product"
+						th:text="${product.name}"></div>
+					<div class="col col-2" data-label="Add Image">
+						<!--  	<a th:href="@{${'/seller/product/image/add/'+product.id}}" target="iframe_a">Add More Images</a>-->
+						<button id="myBtn"
+							style="background-color: inherit; border: none;"
+							th:value="${product.id}" onclick="addValue(event)">Add
+							More Images</button>
+					</div>
+					<div class="col col-3" data-label="Amount">
+						<a th:href="@{${'/seller/product/image/select/'+product.id}}">Delete</a>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<ul th:if="${totalPage>0}" id="pagination">
+			<li th:unless="${currentPage==1}"><a
+				th:href="@{'/seller/product/image-operation/'+${currentPage-1}}" class="page">Previous</a></li>
+
+			<li th:if="${prePage<currentPage && prePage!=0}"><a
+				th:href="@{${'/seller/product/image-operation/'+ prePage}}" th:text="${prePage}"
+				class="page"></a></li>
+			<li><a th:href="@{${'/seller/product/image-operation/'+ currentPage}}"
+				th:text="${currentPage}" class="page"></a></li>
+
+			<li th:if="${nextPage<totalPage}"><a
+				th:href="@{${'/seller/product/image-operation/'+ nextPage}}" th:text="${nextPage}"
+				class="page"></a></li>
+
+			<li th:if="${nextPage<=totalPage}"><a
+				th:href="@{${'/seller/product/image-operation/'+totalPage}}"
+				th:text="Last" class="page"></a></li>
+
+			<li th:unless="${currentPage==totalPage}"><a
+				th:href="@{'/seller/product/image-operation/'+${currentPage+1}}" class="page">Next</a></li>
+		</ul>
+
+		<script th:src="@{/js/img.js}"></script>
+	</section>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www/thymeleaf.org"
+	th:replace="user/base::layout(~{::section})">
+<head>
+<meta charset="UTF-8" />
+<title>Your Cart</title>
+</head>
+<body>
+	<section>
+		<div class="heading" th:unless="${items.size()==0}">
+			<h1>Your Cart</h1>
+		</div>
+		<div class="card-container">
+			<div th:if="${items.size()==0}" class="heading">
+				<h1>Cart is Empty</h1>
+			</div>
+			<div class="card" th:each="item : ${items}">
+				<img th:src="@{${'/img/'+item.product.images.get(0).imageText}}"
+					alt="" /> <span th:text="${item.product.name}" class="title"></span>
+				<span th:text="${'₹'+item.product.price}" class="price"></span> <span
+					th:text="${'Quant:'+item.qunatity}" class="quantity"></span> <span
+					th:text="${'Total:'+item.qunatity*item.product.price}"
+					class="total"></span> <small
+					th:if="${item.product.totalQuantity<=10}"
+					th:text="${'Hurry Up! Only '+item.product.totalQuantity+ ' left'}"
+					class="left-quantity"></small>
+				<div class="links">
+					<a th:href="@{${'/customer/remove-from-cart/'+item.id}}"
+						class="link">Remove</a> <a
+						th:href="@{${'/customer/order/'+item.product.id}}" class="link">Buy</a>
+				</div>
+			</div>
+		</div>
+		<div th:text="${'All Total ₹'+total}" class="all-total"></div>
+	</section>
+</body>
+</html>

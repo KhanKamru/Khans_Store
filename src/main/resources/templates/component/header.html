@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleag.org">
+<head>
+<meta charset="UTF-8" />
+<title>Document</title>
+</head>
+<body>
+	<header th:fragment="header">
+	<div class="menu-container">
+	<button class="close-btn" onclick="hideMenu()">&times;</button>
+		<ul>
+			<li><a th:href="@{/}">Home</a></li>
+			<li><a th:href="@{/customer/my-orders/1}">My Orders</a></li>
+			<li><a th:href="@{/customer/change-password}">Change Password</a></li>
+			<li><a th:href="@{/logout}">Logout</a></li>
+		</ul>
+	</div>
+		<nav class="nav-bar">
+			<div class="icon-container"  onclick="showMenu()">
+				<img th:src="@{/img/menu-icon.png}" alt="" class="icon" />
+			</div>
+			<div class="logo">
+				<h2><a th:href="@{/}" style="color:white;">Khan's Store</a></h2>
+			</div>
+			<form th:action="@{/search/1}" method="get" class="search-form">
+				<input type="search" name="search" placeholder="Search...." required /> <input type="submit"
+					value="🔍" class="btn"/>
+			</form>
+			<ul class="list">
+				<!--  <li><a th:href="" th:text="#{userData.carts.size()}">Cart</a></li> -->
+				<li th:if="${logged}"><a th:href="@{/logout}" class="btn">logout</a></li>
+				<li th:if="${!logged}"><a th:href="@{/signin}" class="btn">login</a></li>
+			<!--  -->	
+				<li><a th:href="@{/customer/cart}" th:text="${'Cart'+cart}" class="btn"></a></li>
+			</ul>
+		</nav>
+
+	</header>
+</body>
+</html>

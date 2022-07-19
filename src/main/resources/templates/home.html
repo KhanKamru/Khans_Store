@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www/thymeleaf.org"
+	th:replace="user/base::layout(~{::section})">
+<head>
+<meta charset="UTF-8" />
+<title th:text=${title}>Document</title>
+</head>
+<body>
+	<section>
+		<div class="image-slider">
+			<div class="slider-img">
+				<img th:src="@{/img/img1.png}" alt="" class="slide-img"
+					style="display: block" /> <img th:src="@{/img/img2.jfif}" alt=""
+					class="slide-img" /> <img th:src="@{/img/img3.jpg}" alt=""
+					class="slide-img" />
+					<img th:src="@{/img/img4.jfif}" alt=""
+					class="slide-img" />
+			</div>
+		</div>
+		<button onclick="decrement()" class="slider-btn"><</button>
+		<button onclick="increment()" class="slider-btn" style="right: 0">></button>
+		<h2>Shop By Category</h2>
+
+		<div class="category-container">
+			<div class="card" th:each="product :${products}">
+				<a th:href="@{${'/category/'+product.category}}"> <img
+					th:src="@{${'/img/'+product.images.get(0).imageText}}" alt=""
+					style="height: 85%;" /> <b th:text="${product.category}"></b>
+				</a>
+			</div>
+		</div>
+		<script th:src="@{/js/home.js}"></script>
+	</section>
+</body>
+</html>

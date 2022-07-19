@@ -1,0 +1,162 @@
+
+
+
+* {
+	margin: 0px;
+	padding: 0px;
+}
+
+body {
+	height: 100%;
+}
+
+.outer-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.main-container {
+	width: 600px;
+	height: 600px;
+	display: flex;
+	color: white;
+	background-color: black;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	border: 2px solid tomato;
+	border-radius: 15px;
+	padding: 30px;
+}
+
+label {
+	color: white;
+	font-size: 17px;
+	margin: 5px;
+	padding: 10px;
+}
+
+.input-box {
+	background-color: inherit;
+	outline: 0;
+	border-width: 0 0 2px;
+	border-color: white;
+	color: white;
+	font-size: 17px;
+	display: block;
+	padding: 10px;
+	margin: 15px;
+}
+
+.submit-btn {
+	background-color: #d3d0eb;
+	color: black;
+	border: 2px solid tomato;
+	font-size: 17px;
+	padding: 10px;
+	margin: 15px;
+	height: 40px;
+	border-radius: 8px;
+}
+
+.validation-error {
+	font-size: 17px;
+	color: red;
+	margin: 10px;
+}
+/* Table*/
+.container {
+	max-width: 1000px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+h2 {
+	font-size: 26px;
+	margin: 20px 0;
+	text-align: center;
+}
+
+.responsive-table li {
+	border-radius: 3px;
+	padding: 25px 30px;
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 25px;
+	text-align: center;
+}
+
+.table-header {
+	background-color: #95A5A6;
+	font-size: 14px;
+	text-transform: uppercase;
+	letter-spacing: 0.03em;
+}
+
+.table-row {
+	background-color: #ffffff;
+	box-shadow: 0px 0px 9px 0px rgba(0, 0, 0, 0.1);
+	text-align: center;
+}
+
+.col-1 {
+	flex-basis: 40%;
+}
+
+.col-2 {
+	flex-basis: 15%;
+}
+
+.col-3 {
+	flex-basis: 15%;
+}
+
+.col-4 {
+	flex-basis: 15%;
+}
+
+.col-5 {
+	flex-basis: 15%;
+}
+
+/*modal */
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	padding-top: 100px; /* Location of the box */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0, 0, 0); /* Fallback color */
+	background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+	background-color: #fefefe;
+	margin: auto;
+	padding: 20px;
+	border: 1px solid #888;
+	text-align: center;
+	width: 80%;
+}
+
+/* The Close Button */
+.close {
+	color: #aaaaaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+.close:hover, .close:focus {
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
+}

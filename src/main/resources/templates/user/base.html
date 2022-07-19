@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www/thymeleaf.org"
+	th:fragment="layout(content)">
+<head>
+<meta charset="UTF-8" />
+
+<title th:text="${title}"></title>
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+<link rel="stylesheet" th:href="@{/css/form.css}" />
+
+</head>
+<body>
+	<div th:replace="component/header::header"></div>
+		<div th:if="${session.msg}" th:text="${session.msg.message}"
+		th:classappend=${session.msg.cssClass}>
+			<th:block th:text="${#session.removeAttribute('msg')}"></th:block>
+		</div>
+	<div th:replace="${content}"></div>
+	<div th:replace="component/footer::footer"></div>
+	<script th:src="@{/js/script.js}"></script>
+</body>
+</html>
