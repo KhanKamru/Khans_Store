@@ -1,4 +1,6 @@
 # Khans_Store
+
+![](Screeshot/Screenshot%202022-07-19%20144039.png)
 This is fully functional e-commerce website.
 It is made using spring-boot MVC,Spring Data JPA, thymeleaf, CSS and JavaScript.
 This also uses spring security and hibernate validator.
