@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="user/base::layout(~{::section})">
+<head>
+<meta charset="UTF-8" />
+<title>Document</title>
+</head>
+<body>
+	<section>
+		<div class="card-container">
+			<div th:if="${totalPage==0}" class="heading">
+				<h1>No Result Found</h1>
+			</div>
+			<div class="card" th:each="product :${products}">
+				<img th:src="@{${'/img/'+product.images.get(0).imageText}}" alt="" />
+				<span th:text="${product.name}" class="title"></span> <span
+					th:text="${'₹'+product.price}" class="price"></span> <small
+					th:if="${product.totalQuantity<=10}"
+					th:text="${'Hurry Up! Only '+product.totalQuantity+ ' left'}"
+					class="left-quantity"></small>
+				<div class="links">
+					<a th:href="@{${'/customer/add-to-cart/'+product.id}}" class="link">Add
+						To Cart</a> <a th:href="@{${'/customer/order/'+product.id}}"
+						class="link">Buy</a>
+				</div>
+			</div>
+		</div>
+			<ul th:if="${totalPage>0}" id="pagination">
+				<li th:unless="${currentPage==1}" ><a
+					th:href="@{'/search/'+${currentPage-1}+'?search='+${params}}" class="page">Previous</a></li>
+					
+				<li th:if="${prePage<currentPage && prePage!=0}"><a
+					th:href="@{${'/search/'+ prePage+'?search='+params}}"
+					th:text="${prePage}" class="page"></a></li>
+				<li><a
+					th:href="@{${'/search/'+ currentPage +'?search='+params}}"
+					th:text="${currentPage}" class="page"></a></li>
+
+				<li th:if="${nextPage<totalPage}"><a
+					th:href="@{${'/search/'+ nextPage +'?search='+params}}"
+					th:text="${nextPage}" class="page"></a></li>
+					
+				<li th:if="${nextPage<=totalPage}"><a
+					th:href="@{'/search/'+${totalPage}+'?search='+${params}}" th:text="Last" class="page"></a></li>
+					
+				<li th:unless="${currentPage==totalPage}" ><a
+					th:href="@{'/search/'+${currentPage+1}+'?search='+${params}}" class="page">Next</a></li>
+			</ul>
+	</section>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleag.org">
+<head>
+<meta charset="UTF-8" />
+<title>Document</title>
+</head>
+<body>
+	<header th:fragment="header">
+		<div class="menu-container">
+			<button class="close-btn" onclick="hideMenu()">&times;</button>
+			<ul>
+				<li><a th:href="@{/seller/dashboard/1}">Dashboard</a></li>
+				<li><a th:href="@{/seller/add-product}">Add Product</a></li>
+				<li><a th:href="@{/seller/product/image-operation/1}">Add/Delete
+					Images</a></li>
+				<li><a th:href="@{/seller/product/customer/1}">Customer</a></li>
+				<li><a th:href="@{/logout}">Logout</a></li>
+			</ul>
+		</div>
+		<nav class="nav-bar" style="justify-content:flex-start;">
+			<div class="icon-container" onclick="showMenu()">
+				<img th:src="@{/img/menu-icon.png}" alt="" class="icon" />
+			</div>
+			<div class="logo" style="margin-left: 200px;">
+				<h2>Khan's Store</h2>
+			</div>
+		</nav>
+
+	</header>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Register Here</title>
+<link rel="stylesheet" th:href="@{/css/form.css}" />
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+
+</head>
+<body>
+	<div th:if="${session.msg}" th:text="${session.msg.message}" th:classappend=${session.msg.cssClass}>
+			<th:block th:text="${#session.removeAttribute('msg')}"></th:block>
+	</div>
+	<div class="outer-container">
+		<div class="main-container">
+			<h1>Register Form</h1>
+			<form th:action="@{/register}" method="post" th:object="${user}">
+				<!--   <label for="name">Enter Your Name: </label>-->
+				<input type="text" name="name" required th:value="${user.name}"
+					placeholder="Enter Your Name:" class="input-box"/>
+				<div th:if="${#fields.hasErrors('name')}" th:errors="${user.name}" class="validation-error"></div>
+
+				<!--label for="email">Enter Email</label>-->
+				<input type="email" name="email" required th:value="${user.email}"
+					placeholder="Enter Email" class="input-box"/>
+				<div th:if="${#fields.hasErrors('email')}" th:errors="${user.email}" class="validation-error"></div>
+
+				<!--<label for="phone">Enter Phone:</label>-->
+				<input type="text" required name="phone" th:value="${user.phone}"
+					placeholder="Enter Phone Number" class="input-box"/>
+				<div th:if="${#fields.hasErrors('phone')}" th:errors="${user.phone}" class="validation-error"></div>
+
+				<!--  <label for="password">Enter Password:</label>-->
+				<input type="password" required name="password"
+					placeholder="Enter Password" class="input-box"/>
+				<div th:if="${#fields.hasErrors('password')}"
+					th:errors="${user.password}" class="validation-error"></div>
+
+				<!-- <label for="password">Enter Confirm Password:</label> -->
+				<input type="password" name="confirm_pass"
+					placeholder="Enter Confirm Password" required class="input-box"/> <input
+					type="hidden" name="role" th:value="${role}" /> <input
+					type="submit" value="Register" class="submit-btn"/>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

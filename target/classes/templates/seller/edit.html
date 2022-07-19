@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en" xmlns:th="www.thymeleaf.org"
+	th:replace="seller/base::layout(~{::section})">
+
+<head>
+<meta charset="UTF-8" />
+<title>Document</title>
+</head>
+<body>
+	<section>
+		<div class="outer-container" style="height: 850px;">
+			<div class="main-container" style="height: max-content;">
+				<h1>Update Product</h1>
+				<form th:action="@{${'/seller/product/edit/'+product.id}}" method="post"
+					enctype="multipart/form-data" th:object="${product}">
+					<input type="text" name="name" th:value="${product.name}"
+						placeholder="Enter Product Title" class="input-box" required />
+					<div th:if="${#fields.hasErrors('name')}"
+						th:errors="${product.name}" class="validation-error"></div>
+
+					<label for="price">Enter Price:</label> <input type="text"
+						name="price" th:value="${product.price}" placeholder="Enter price"
+						class="input-box" required />
+					<div th:if="${#fields.hasErrors('price')}"
+						th:errors="${product.price}" class="validation-error"></div>
+
+					<input type="text" name="category" th:value="${product.category}"
+						placeholder="Enter Category:" class="input-box" required />
+					<div th:if="${#fields.hasErrors('category')}"
+						th:errors="${product.category}" class="validation-error"></div>
+
+					<label for="totalQuantity">Enter Total Quantity:</label> <input
+						type="text" name="totalQuantity"
+						th:value="${product.totalQuantity}"
+						placeholder="Enter Total Quantity" class="input-box" required />
+					<div th:if="${#fields.hasErrors('totalQuantity')}"
+						th:errors="${product.totalQuantity}" class="validation-error"></div>
+
+					<textarea name="description" id="" cols="30" rows="10"
+						th:text="${product.description}"
+						placeholder="Write Description about Product" required
+						style="margin: auto"></textarea>
+					<div th:if="${#fields.hasErrors('description')}"
+						th:errors="${product.description}" class="validation-error"></div>
+					<br /> <input type="submit" value="Update" class="submit-btn" />
+				</form>
+			</div>
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+
+		<!--  <form th:action="@{${'/seller/product/edit/'+product.id}}"
+			method="post" th:object="${product}">
+			<label for="name">Enter Product Title </label> <input type="text"
+				name="name" th:value="${product.name}" /> <label for="price">Enter
+				price</label> <input type="text" name="price" th:value="${product.price}" />
+			<label for="category">Enter Category:</label> <input type="text"
+				name="category" th:value="${product.category}" /> <label for="name">Enter
+				Total Quantity</label> <input type="text" name="totalQuantity"
+				th:value="${product.totalQuantity}" />
+			<textarea name="description" id="" cols="30" rows="10"
+				th:text="${product.description}"></textarea>
+			  <label for="file">Upload Images</label>
+		<input type="file" name="files" multiple /> 		<input type="submit" value="Update" />
+		</form>
+		-->
+	</section>
+</body>
+</html>

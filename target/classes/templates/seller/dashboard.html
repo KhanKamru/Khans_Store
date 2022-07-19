@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en" xmlns:th="www.thymeleaf.org"
+	th:replace="seller/base::layout(~{::section})">
+
+<head>
+<meta charset="UTF-8" />
+<title>Dash board</title>
+</head>
+<body>
+	<section>
+		<div class="container">
+			<div class="heading">
+				<h2>Your Product</h2>
+			</div>
+			<ul class="responsive-table">
+				<li class="table-header">
+					<div class="col col-1">Product</div>
+					<div class="col col-2">Price</div>
+					<div class="col col-3">Category</div>
+					<div class="col col-4">Quantity Left</div>
+					<div class="col col-5">Actions</div>
+
+
+				</li>
+				<li th:each="product:${products}" class="table-row">
+					<div class="col col-1" data-label="Product"
+						th:text="${product.name}"></div>
+					<div class="col col-2" data-label="Price"
+						th:text="${'₹'+product.price}">
+						<!--  	<a th:href="@{${'/seller/product/image/add/'+product.id}}" target="iframe_a">Add More Images</a>-->
+
+					</div>
+					<div class="col col-3" data-label="Category"
+						th:text="${product.category}"></div>
+					<div class="col col-4" data-label="Quantity Left"
+						th:text="${product.totalQuantity}"></div>
+					<div class="col col-5" data-label="Actions">
+						<div class="links">
+							<a th:href="@{${'/seller/product/edit/'+product.id}}"
+								class="link">Edit </a><a
+								th:href="@{${'/seller/product/delete/'+product.id}}"
+								class="link">Delete </a>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<ul th:if="${totalPage>0}" id="pagination">
+			<li th:unless="${currentPage==1}"><a
+				th:href="@{'/seller/dashboard/'+${currentPage-1}}"
+				class="page">Previous</a></li>
+
+			<li th:if="${prePage<currentPage && prePage!=0}"><a
+				th:href="@{${'/seller/dashboard/'+ prePage}}"
+				th:text="${prePage}" class="page"></a></li>
+			<li><a
+				th:href="@{${'/seller/dashboard/'+ currentPage}}"
+				th:text="${currentPage}" class="page"></a></li>
+
+			<li th:if="${nextPage<totalPage}"><a
+				th:href="@{${'/seller/dashboard/'+ nextPage}}"
+				th:text="${nextPage}" class="page"></a></li>
+
+			<li th:if="${nextPage<=totalPage}"><a
+				th:href="@{${'/seller/dashboard/'+totalPage}}" th:text="Last"
+				class="page"></a></li>
+
+			<li th:unless="${currentPage==totalPage}"><a
+				th:href="@{'/seller/dashboard/'+${currentPage+1}}"
+				class="page">Next</a></li>
+		</ul>
+	</section>
+</body>
+</html>

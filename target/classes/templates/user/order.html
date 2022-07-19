@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www/thymeleaf.org"
+	th:replace="user/base::layout(~{::section})">
+
+<head>
+<meta charset="UTF-8" />
+<title>Your Cart</title>
+</head>
+
+<body>
+	<section>
+		<div class="order-container">
+			<div class="small-img-container">
+				<div th:each="image :${product.images}" class="small-images">
+					<img th:src="@{${'/img/'+image.imageText}}" alt=""
+						onClick="changeImage(event)" class="target-img" />
+				</div>
+			</div>
+			<div class="images-container">
+
+				<div class="main-image">
+					<img th:src="@{${'/img/'+product.images.get(0).imageText}}" alt=""
+						id="main-image" />
+				</div>
+				<div class="product-info">
+					<span th:text="${product.name}"></span>
+					<div>
+						<span>₹</span><span th:text="${product.price}" id="price"></span>
+					</div>
+					<em><span style="display: block; font-size: 15px;"
+						th:text="${product.description}"></span></em>
+					<div id="total" th:text="${'Total Price ₹'+product.price}"></div>
+
+				</div>
+			</div>
+
+			<div class="address-container">
+				<form th:action="@{${'/customer/book/'+product.id}}" method="post"
+					th:object="${address}">
+					<label for="quantity" class="add-label">Select Quantity</label> <select
+						name="quantity" id="quantity" onChange="calculatePrice()">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
+					</select> <label for="addressLine" class="add-label">Address Line</label><input
+						type="text" name="addressLine" th:value="${address.addressLine}"
+						class="add-input" required />
+					<div th:if="${#fields.hasErrors('addressLine')}"
+						th:errors="${address.addressLine}" class="validation-error"></div>
+
+
+					<label for="landmark" class="add-label">Enter Landmark</label><input
+						type="text" name="landMark" class="add-input"
+						th:value="${address.landMark}" required />
+					<div th:if="${#fields.hasErrors('landMark')}"
+						th:errors="${address.landMark}" class="validation-error"></div>
+
+					<label for="state" class="add-label">Enter State</label><input
+						type="text" name="state" class="add-input"
+						th:value="${address.state}" required />
+					<div th:if="${#fields.hasErrors('state')}"
+						th:errors="${address.state}" class="validation-error"></div>
+
+					<label for="city" class="add-label">Enter City</label><input
+						type="text" name="city" required th:value="${address.city}"
+						class="add-input" />
+					<div th:if="${#fields.hasErrors('city')}"
+						th:errors="${address.city}" class="validation-error"></div>
+
+					<label for="pincode" class="add-label">Pincode</label><input
+						type="text" name="pinCode" required th:value="${address.pinCode}"
+						class="add-input" />
+					<div th:if="${#fields.hasErrors('pinCode')}"
+						th:errors="${address.pinCode}" class="validation-error"></div>
+
+					<input type="submit" value="Book" class="submit-btn" />
+				</form>
+			</div>
+		</div>
+		<script th:src="@{/js/order.js}"></script>
+	</section>
+</body>
+
+</html>
